@@ -6,7 +6,7 @@ Bundler.setup
 require File.join(File.dirname(__FILE__), 'application')
 
 set :run, false
-set :environment, :development
+set :environment, :production
 
 begin
   

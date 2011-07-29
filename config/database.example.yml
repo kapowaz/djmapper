@@ -9,7 +9,3 @@
 :test:
   <<: *defaults
   :database: djmapper_test
-
-:production:
-  <<: *defaults
-  :database: djmapper_production

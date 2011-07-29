@@ -33,7 +33,7 @@ class Page
 end
 
 before do
-  @page = { :title => "DJMapper", :subtitle => "Delayed::Job, DataMapper & Sinatra" }
+  @page = { :title => "DJMapper", :subtitle => "DelayedJob + DataMapper (performed by Sinatra)" }
 end
 
 
@@ -42,18 +42,22 @@ get "/" do
 end
 
 post "/url" do
-  url_expression = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
-  
-  if params[:url].match url_expression
+  if params[:url].match /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
     @page[:page] = Page.create :url => params[:url]
   else
     @page[:error] = "Invalid URL"
   end
-
   erb :index
 end
 
-DataMapper.setup :default, YAML.load(File.new("config/database.yml"))[:development]
+configure :development do
+  DataMapper.setup :default, YAML.load(File.new("config/database.yml"))[:development]
+end
+
+configure :production do
+  DataMapper.setup(:default, ENV['DATABASE_URL'])
+end
+
 DataMapper.finalize
 DataMapper.auto_upgrade!
 Delayed::Worker.backend = :data_mapper

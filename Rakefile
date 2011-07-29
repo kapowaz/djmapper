@@ -4,7 +4,7 @@ require 'active_support/core_ext'
 require 'delayed_job'
 require 'delayed_job_data_mapper'
 
-namespace :dj do
+namespace :jobs do
   desc "Start DelayedJob worker"
   task :work do    
     DataMapper.setup :default, YAML.load(File.new("config/database.yml"))[:development]

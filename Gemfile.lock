@@ -42,6 +42,9 @@ GEM
       do_mysql (~> 0.10.2)
     dm-observer (1.1.0)
       dm-core (~> 1.1.0)
+    dm-postgres-adapter (1.1.0)
+      dm-do-adapter (~> 1.1.0)
+      do_postgres (~> 0.10.2)
     dm-serializer (1.1.0)
       dm-core (~> 1.1.0)
       fastercsv (~> 1.5.4)
@@ -60,6 +63,8 @@ GEM
     dm-validations (1.1.0)
       dm-core (~> 1.1.0)
     do_mysql (0.10.6)
+      data_objects (= 0.10.6)
+    do_postgres (0.10.6)
       data_objects (= 0.10.6)
     fastercsv (1.5.4)
     i18n (0.6.0)
@@ -80,5 +85,6 @@ DEPENDENCIES
   delayed_job
   delayed_job_data_mapper_ste
   dm-mysql-adapter
+  dm-postgres-adapter
   i18n
   sinatra
