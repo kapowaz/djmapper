@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'rubygems'
 require 'net/http'
-require 'open/uri'
+require 'open-uri'
 require 'sinatra'
 require 'data_mapper'
 require 'active_support/core_ext'
