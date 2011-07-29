@@ -20,10 +20,9 @@ class Page
     Delayed::Job.enqueue self
   end
   
-  def prepare
+  def perform
     begin
-      u = open self.url
-      self.data    = u.string
+      self.data    = open(self.url).string
       self.pending = false
       self.save
     rescue
