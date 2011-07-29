@@ -1,0 +1,12 @@
+<h1><%= @page[:title] %></h1>
+<p><%= @page[:subtitle] %></p>
+
+<form action="/url" method="post">
+	<label for="input_url">Enter a URL to go grab:</label>
+	<input type="text" name="url" id="input_url">
+	<input type="submit" value="Grab">
+</form>
+
+<% if @page[:page] %>
+<p>You requested the page <pre><%= @page[:page].url %></pre>, <span class="status">and it's currently being grabbed for you.</span></p>
+<% end %>

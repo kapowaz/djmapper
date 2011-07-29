@@ -1,0 +1,15 @@
+# make a copy of this file called database.yml with your real database credentials
+:development: &defaults
+  :adapter: mysql
+  :database: djmapper_development
+  :username: djmapper
+  :password: 
+  :host: localhost
+
+:test:
+  <<: *defaults
+  :database: djmapper_test
+
+:production:
+  <<: *defaults
+  :database: djmapper_production

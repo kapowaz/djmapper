@@ -1,0 +1,39 @@
+body
+{
+  font-family:Lucida Grande, sans-serif;
+  font-size:12px;
+  line-height:18px;
+  width:940px;
+  margin:0 auto;
+  padding:50px 10px;
+  background-color:black;
+  color:white;
+}
+
+body h1
+{
+  font-family:Helvetica Neue, sans-serif;
+  font-size:48px;
+  letter-spacing:-0.05em;
+}
+
+body form 
+{
+  border-top:1px solid rgba(0,0,0,0.2);
+  margin-top:50px;
+  padding-top:20px;
+}
+
+body form label { display:block; margin-bottom:5px; }
+body form input[type=text] 
+{ 
+  width:850px;
+  border-radius:3px;
+  border:2px solid white;
+  font-size:12px;
+  height:20px;
+  line-height:20px;
+}
+body form input[type=text]:focus { border-color:rgb(50,90,255); outline:none; }
+body form input[type=text].error { border-color:red; }
+body form input[type=submit] { width:80px; }

@@ -1,0 +1,4 @@
+DJMapper
+========
+
+A small sample application to demonstrate DelayedJob, DataMapper and Sinatra working together.
