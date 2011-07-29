@@ -1,5 +1,6 @@
 source "http://rubygems.org"
 
+gem "rest-client"
 gem "sinatra"
 gem "i18n"
 gem "data_mapper", ">= 1.1.0"

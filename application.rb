@@ -1,7 +1,6 @@
 # encoding: utf-8
 require 'rubygems'
-require 'net/http'
-require 'open-uri'
+require 'rest-client'
 require 'sinatra'
 require 'data_mapper'
 require 'active_support/core_ext'
@@ -22,10 +21,10 @@ class Page
   
   def perform
     begin
-      self.data    = open(self.url).string
+      self.data    = RestClient.get self.url
       self.pending = false
       self.save
-    rescue
+    rescue => e
       # failed to open the url ...
     end
   end
@@ -40,12 +39,25 @@ get "/" do
   erb :index
 end
 
-post "/url" do
+post "/" do
   if params[:url].match /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
-    @page[:page] = Page.create :url => params[:url]
+    page = Page.create :url => params[:url]
+    redirect "/pages/#{page.id}"
   else
-    @page[:error] = "Invalid URL"
+    @page[:requested] = params[:url]
+    @page[:error]     = "That's not a valid URL."
   end
+  erb :index
+end
+
+get "/pages/:page_id.json" do |page_id|
+  content_type :json
+  Page.get(page_id.to_i).to_json
+end
+
+get "/pages/:page_id" do |page_id|
+  @page[:page]      = Page.get(page_id.to_i)
+  @page[:requested] = @page[:page].url
   erb :index
 end
 
